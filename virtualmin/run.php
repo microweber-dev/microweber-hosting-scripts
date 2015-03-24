@@ -124,6 +124,10 @@ $exec .= " -t " . $default_template . " -d 1 ";
 $message = $message . "\n\n\n" . $exec;
 shell_exec($exec);
 
+if (!isset($opts['options']) and isset($install_options) and is_array($install_options) and !empty($install_options)) {
+    $opts['options'] = $install_options;
+}
+
 
 if (isset($opts['options']) and is_array($opts['options']) and !empty($opts['options'])) {
     foreach ($opts['options'] as $option) {

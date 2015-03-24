@@ -1,5 +1,8 @@
 <?php
 
+// Rename this file to config.php
+
+
 // folder for the microweber source, add slash at the end
 $source_folder = '/usr/share/microweber-latest/';
 $update_folder = '/usr/share/microweber-update/';
@@ -8,9 +11,6 @@ $update_folder = '/usr/share/microweber-update/';
 
 // $debug_email = 'admin@microweber.com';
 // $debug_email_subject = 'New site';
-
-
-
 
 
 // copy internal files from the shared folder as a source
@@ -27,3 +27,9 @@ $copy_external = array(); // $source=>$dest
 $copy_external['/usr/share/microweber-ext/userfiles/modules'] = 'userfiles/modules';
 $copy_external['/usr/share/microweber-ext/userfiles/templates'] = 'userfiles/templates';
 $copy_external['/usr/share/microweber-ext/favicon.ico'] = 'favicon.ico';
+
+
+//  $install_options = array(
+//      array('option_key' => 'website_title', 'option_value' => 'My Web', 'option_group' => 'website'),
+//      array('option_key' => 'items_per_page', 'option_value' => '30', 'option_group' => 'website')
+//  );

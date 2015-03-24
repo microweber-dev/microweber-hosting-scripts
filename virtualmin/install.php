@@ -10,7 +10,7 @@ if (isset($config["VIRTUALSERVER_ACTION"])) {
         $opts = array();
 
         // folder for the microweber source
-        // $opts['source_folder'] = '/usr/share/microweber/';
+        // $opts['source_folder'] = '/usr/share/microweber-latest/';
 
         // debug email
         // $opts['debug_email'] = 'boksiora@gmail.com';
@@ -26,7 +26,7 @@ if (isset($config["VIRTUALSERVER_ACTION"])) {
         $opts['database_password'] = $config["VIRTUALSERVER_PASS"];
 
         //  $opts['options'] = array(
-        //      array('option_key' => 'website_title', 'option_value' => 'Boxed Web', 'option_group' => 'website'),
+        //      array('option_key' => 'website_title', 'option_value' => 'My Web', 'option_group' => 'website'),
         //      array('option_key' => 'items_per_page', 'option_value' => '30', 'option_group' => 'website')
         //  );
 		
