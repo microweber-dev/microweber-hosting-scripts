@@ -2,7 +2,7 @@
 <?php
 
 
-//require __DIR__ . "/download.php";
+require __DIR__ . "/download.php";
 
 $path = '/home/';
 
