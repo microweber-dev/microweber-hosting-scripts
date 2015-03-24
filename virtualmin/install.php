@@ -9,11 +9,11 @@ if (isset($config["VIRTUALSERVER_ACTION"])) {
 
         $opts = array();
         // folder for the microweber source
-        $opts['source_folder'] = '/usr/share/microweber/';
+        // $opts['source_folder'] = '/usr/share/microweber/';
 
         // debug email
-        $opts['debug_email'] = 'boksiora@gmail.com';
-        $opts['debug_email_subject'] = 'New site';
+        //$opts['debug_email'] = 'boksiora@gmail.com';
+        // $opts['debug_email_subject'] = 'New site';
 
 
         $opts['user'] = $config["VIRTUALSERVER_USER"];

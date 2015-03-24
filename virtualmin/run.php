@@ -3,11 +3,26 @@
 if (isset($opts['source_folder'])) {
     $mw_shared_dir = $opts['source_folder']; //add slash
 } else {
-    $mw_shared_dir = '/usr/share/microweber/'; //add slash
+    $mw_shared_dir = '/usr/share/microweber-latest/'; //add slash
 }
 
 $config_file = __DIR__ . DIRECTORY_SEPARATOR . 'config.php';
 $config_file_dist = __DIR__ . DIRECTORY_SEPARATOR . 'config.dist.php';
+if (is_file($config_file)) {
+    include($config_file);
+} elseif (is_file($config_file_dist)) {
+    include($config_file_dist);
+}
+
+if (!isset($opts['source_folder']) and isset($source_folder)) {
+    $mw_shared_dir = $source_folder; //add slash
+}
+if (!isset($opts['debug_email']) and isset($debug_email)) {
+    $opts['debug_email'] = $debug_email;
+}
+if (!isset($opts['debug_email_subject']) and isset($debug_email_subject)) {
+    $opts['debug_email_subject'] = $debug_email_subject;
+}
 
 
 set_time_limit(300);
@@ -41,11 +56,7 @@ $message = $message . "\n\n\n" . $exec;
 $output = exec($exec);
 $message = $message . "\n\n\n" . $output;
 
-if (is_file($config_file)) {
-    include($config_file);
-} elseif (is_file($config_file_dist)) {
-    include($config_file_dist);
-}
+
 if (isset($copy_files) and is_array($copy_files) and !empty($copy_files)) {
     foreach ($copy_files as $file) {
         $file = str_replace('..', '', $file);

@@ -42,3 +42,11 @@ If you have completed the above steps, all that is left is to add the install sc
 
 ![setup.png](setup.png "")
 
+
+## That's it! 
+
+You are done, its that easy. Now when you create new account from Vurtualmin a new Microweber website will be created automatically. 
+
+If you need further configuration you can rename the file `config.dist.php` to `config.php` and edit your settings there. 
+
+

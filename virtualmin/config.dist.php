@@ -1,5 +1,17 @@
 <?php
 
+// folder for the microweber source
+$source_folder = '/usr/share/microweber-latest/';
+
+// debug email, uncomment these to get email on new install
+
+// $debug_email = 'admin@microweber.com';
+// $debug_email_subject = 'New site';
+
+
+
+
+
 // copy internal files from the shared folder as a source
 $copy_files = array();
 $copy_files[] = 'favicon.ico';
