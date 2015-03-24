@@ -7,4 +7,3 @@ You will need to have root access to your servers and knowledge of you hosting c
 
 Make sure you cover the [server requirements](https://github.com/microweber/microweber#general-requirements "") and you can install Microweber normally, before employing those automated methods.
 
-
