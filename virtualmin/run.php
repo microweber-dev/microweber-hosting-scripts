@@ -104,7 +104,7 @@ $conf = array();
 
 
 if (isset($opts['database_table_prefix'])) {
-    $database_prefix =  $opts['database_table_prefix'];
+    $database_prefix = $opts['database_table_prefix'];
 } else {
     $database_prefix = 'mw_';
 }
@@ -123,6 +123,20 @@ $exec .= " -t " . $default_template . " -d 1 ";
 
 $message = $message . "\n\n\n" . $exec;
 shell_exec($exec);
+
+
+if (isset($opts['options']) and is_array($opts['options']) and !empty($opts['options'])) {
+    foreach ($opts['options'] as $option) {
+        if (isset($option['option_key']) and isset($option['option_value']) and isset($option['option_group'])) {
+            $exec = "cd /home/" . $auth_user . "/public_html/;";
+            $exec .= " php artisan microweber:option \"{$option['option_key']}\" \"{$option['option_value']}\" \"{$option['option_group']}\"";
+            $message = $message . "\n\n\n" . $exec;
+
+            $output = exec($exec);
+            $message = $message . "\n\n\n" . $output;
+        }
+    }
+}
 
 
 $exec = "chown -R {$opts['user']}:{$opts['user']} /home/{$opts['user']}/public_html/.htaccess";

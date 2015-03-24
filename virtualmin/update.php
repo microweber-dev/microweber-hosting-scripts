@@ -49,6 +49,9 @@ if (isset($update_folder) and is_dir($update_folder)) {
                         $exec = "cp -rf $file $newfile";
                         $output = exec($exec);
                     }
+
+                    $exec = "cd /home/{$user}/public_html/; php artisan cache:clear ";
+                    $output = exec($exec);
                 }
             }
         }
