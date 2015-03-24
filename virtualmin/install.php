@@ -8,6 +8,7 @@ if (isset($config["VIRTUALSERVER_ACTION"])) {
     if (($config["VIRTUALSERVER_ACTION"]) == 'CREATE_DOMAIN') {
 
         $opts = array();
+
         // folder for the microweber source
         // $opts['source_folder'] = '/usr/share/microweber/';
 

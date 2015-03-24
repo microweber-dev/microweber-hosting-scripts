@@ -1,7 +1,8 @@
 <?php
 
-// folder for the microweber source
+// folder for the microweber source, add slash at the end
 $source_folder = '/usr/share/microweber-latest/';
+$update_folder = '/usr/share/microweber-update/';
 
 // debug email, uncomment these to get email on new install
 

@@ -38,6 +38,10 @@ chmod +x /usr/share/microweber-hosting-scripts/virtualmin/install.php
 php /usr/share/microweber-hosting-scripts/virtualmin/download.php
 
 ```
+These scripts will download and unzip the Microweber source in `/usr/share/microweber-latest/`
+
+
+
 
 ## Almost ready
 
@@ -54,4 +58,12 @@ You are done, its that easy. Now when you create new account from Virtualmin a n
 
 If you need further configuration you can rename the file `config.dist.php` to `config.php` and edit your settings there. 
 
+
+### Update all sites to the latest version
+
+If you want to update all sites to the current MW version. Just run the update scripts with: 
+
+```sh 
+php /usr/share/microweber-hosting-scripts/virtualmin/update.php
+```
 
