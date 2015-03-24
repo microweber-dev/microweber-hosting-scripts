@@ -101,7 +101,13 @@ $message = $message . "\n\n\n" . $output;
 
 
 $conf = array();
-$database_prefix = 'mw_';
+
+
+if (isset($opts['database_table_prefix'])) {
+    $database_prefix =  $opts['database_table_prefix'];
+} else {
+    $database_prefix = 'mw_';
+}
 
 if (isset($opts['database_host'])) {
     $database_host = $opts['database_host'];
