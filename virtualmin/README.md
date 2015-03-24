@@ -33,7 +33,10 @@ Setup your installation and when you are ready can go for the install scripts se
 ```sh
 cd /usr/share/
 git clone https://github.com/microweber/microweber-hosting-scripts.git
+chmod +x /usr/share/microweber-hosting-scripts/virtualmin/download.php
+chmod +x /usr/share/microweber-hosting-scripts/virtualmin/install.php
 php /usr/share/microweber-hosting-scripts/virtualmin/download.php
+
 ```
 
 ## Almost ready

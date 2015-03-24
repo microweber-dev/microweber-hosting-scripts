@@ -12,7 +12,7 @@ if (isset($config["VIRTUALSERVER_ACTION"])) {
         // $opts['source_folder'] = '/usr/share/microweber/';
 
         // debug email
-        //$opts['debug_email'] = 'boksiora@gmail.com';
+        // $opts['debug_email'] = 'boksiora@gmail.com';
         // $opts['debug_email_subject'] = 'New site';
 
 
