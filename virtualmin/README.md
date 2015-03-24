@@ -28,11 +28,17 @@ If you go on http://example.com:10000 you can access the Virtualmin control pane
 Setup your installation and when you are ready can go for the install scripts setup.
 
 
-## Download latest version of this repository
+## Download latest version of this repository and Microweber
 
 ```sh
 cd /usr/share/
-git clone git@github.com:microweber/microweber-hosting-scripts.git 
-
+git clone https://github.com/microweber/microweber-hosting-scripts.git
+php /usr/share/microweber-hosting-scripts/virtualmin/download.php
 ```
+
+## Almost ready
+
+If you have completed the above steps, all that is left is to add the install script as Virtualmin command. The command path is `/usr/share/microweber-hosting-scripts/virtualmin/install.php`
+
+![setup.png](setup.png "")
 

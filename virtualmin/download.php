@@ -14,8 +14,8 @@ $output = exec($cmd);
 $cmd = "wget https://microweber.com/download.php?update -O microweber-update.zip";
 $output = exec($cmd);
 
-$cmd = "unzip microweber-latest.zip";
+$cmd = "unzip -o microweber-latest.zip";
 $output = exec($cmd);
 
-$cmd = "unzip microweber-update.zip";
+$cmd = "unzip -o microweber-update.zip";
 $output = exec($cmd);
