@@ -25,8 +25,8 @@ if (isset($opts['domain'])) {
         // $opts['source_folder'] = '/usr/share/microweber-latest/';
 
         // debug email
-         $opts['debug_email'] = 'boksiora@gmail.com';
-         $opts['debug_email_subject'] = 'New site';
+        // $opts['debug_email'] = 'boksiora@gmail.com';
+        // $opts['debug_email_subject'] = 'New site';
 		
 		
 		include_once('/home/cpanelscripthelpers/xmlapi.php');
