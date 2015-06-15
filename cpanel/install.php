@@ -1,6 +1,18 @@
 #!/usr/bin/php
 <?php
 
+if(!isset($opts)){
+	// Set up our variables to be usable by PHP
+	$opts = array();
+	$argv0 = array_shift($argv);
+
+	while(count($argv)) {
+		$key = array_shift($argv);
+		$value = array_shift($argv);
+		$opts[$key] = $value;
+	}
+}
+
 
 $config = $_SERVER;
 
