@@ -1,18 +1,6 @@
 #!/usr/bin/php
 <?php
 
-if(!isset($opts)){
-	// Set up our variables to be usable by PHP
-	$opts = array();
-	$argv0 = array_shift($argv);
-
-	while(count($argv)) {
-		$key = array_shift($argv);
-		$value = array_shift($argv);
-		$opts[$key] = $value;
-	}
-}
-
 
 $config = $_SERVER;
 
@@ -28,8 +16,11 @@ if (isset($opts['domain'])) {
         // $opts['debug_email'] = 'boksiora@gmail.com';
         // $opts['debug_email_subject'] = 'New site';
 		
-		
-		include_once('/home/cpanelscripthelpers/xmlapi.php');
+		if(is_file('/home/cpanelscripthelpers/xmlapi.php')){
+		require('/home/cpanelscripthelpers/xmlapi.php');
+		} else {
+		require(__DIR__.'/cpanelscripthelpers/xmlapi.php');
+		}
 
 		$auth_user = $opts['user'];
 		$auth_pass = $opts['pass'];
