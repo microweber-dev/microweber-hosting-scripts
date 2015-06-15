@@ -31,7 +31,7 @@ if (isset($config["VIRTUALSERVER_ACTION"])) {
         //  );
 		
 		
-        require __DIR__ . "/run.php";
+        require __DIR__ . "/../common/run.php";
     }
 }
 
