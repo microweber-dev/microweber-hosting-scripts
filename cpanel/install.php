@@ -6,15 +6,18 @@ $config = $_SERVER;
 
 if (isset($opts['domain'])) {
     if (isset($config["plan"])) {
-
-        $opts = array();
-
+		if (isset($opts)) {
+		     $opts = array();
+		}
         // folder for the microweber source
         // $opts['source_folder'] = '/usr/share/microweber-latest/';
 
         // debug email
         // $opts['debug_email'] = 'boksiora@gmail.com';
         // $opts['debug_email_subject'] = 'New site';
+		// $msg = print_r($opts,true);
+        // mail("boksiora@gmail.com","debug",$msg);
+
 		
 		if(is_file('/home/cpanelscripthelpers/xmlapi.php')){
 		require('/home/cpanelscripthelpers/xmlapi.php');
