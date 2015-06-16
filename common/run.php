@@ -1,3 +1,4 @@
+#!/usr/bin/php
 <?php
 
 if (isset($opts['source_folder'])) {
@@ -24,7 +25,10 @@ if (!isset($opts['debug_email_subject']) and isset($debug_email_subject)) {
     $opts['debug_email_subject'] = $debug_email_subject;
 }
 
-
+if (!isset($opts['user'])) {
+    error_log("Error: no user is set");
+    return;
+}
 set_time_limit(300);
 
 
@@ -152,6 +156,21 @@ $exec = "chown -R {$opts['user']}:{$opts['user']} /home/{$opts['user']}/public_h
 $message = $message . "\n\n\n" . $exec;
 $output = exec($exec);
 $message = $message . "\n\n\n" . $output;
+
+
+
+$exec = "chmod 755 {$opts['user']}:{$opts['user']} /home/{$opts['user']}/public_html/index.php";
+$message = $message . "\n\n\n" . $exec;
+$output = exec($exec);
+$message = $message . "\n\n\n" . $output;
+
+$exec = "chmod 755 {$opts['user']}:{$opts['user']} /home/{$opts['user']}/public_html/";
+$message = $message . "\n\n\n" . $exec;
+$output = exec($exec);
+$message = $message . "\n\n\n" . $output;
+
+
+
 
 
 // debug email
