@@ -35,18 +35,19 @@ print "Sites to be migrated " . $i . "\n";
 if (isset($update_folder) and is_dir($update_folder)) {
     if (!empty($migrate)) {
         foreach ($migrate as $user => $item) {
-            $exec = "rsync -av --no-compress   {$update_folder}* {$item}";
+            $exec = "rsync -avzp --no-o --no-g --no-compress   {$update_folder}* {$item}";
+            $exec = "rsync -vr --no-o --no-g --no-compress   {$update_folder}* {$item}";
             $output = exec($exec);
-
+            print "Updating " . $item . "\n";
             if (isset($copy_external) and is_array($copy_external) and !empty($copy_external)) {
                 foreach ($copy_external as $source => $dest) {
                     $file = $source;
                     $newfile = "/home/{$user}/public_html/{$dest}";
                     if (is_file($file)) {
-                        $exec = "cp -f $file $newfile";
+                        $exec = "cp -pf $file $newfile";
                         $output = exec($exec);
                     } elseif (is_dir($file)) {
-                        $exec = "cp -rf $file $newfile";
+                        $exec = "cp -rpf $file $newfile";
                         $output = exec($exec);
                     }
 
