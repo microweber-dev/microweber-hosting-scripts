@@ -52,7 +52,10 @@ if (isset($update_folder) and is_dir($update_folder)) {
                         $exec = "cp -pf $file $newfile";
                         $output = exec($exec);
                     } elseif (is_dir($file)) {
-                        $exec = "cp -rpf $file $newfile";
+                        $file .= (substr($file, -1) == '/' ? '' : '/');
+
+
+                        $exec = "cp -rpf $file* $newfile";
                         $output = exec($exec);
                     }
 
