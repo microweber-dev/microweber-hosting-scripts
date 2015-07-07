@@ -39,6 +39,11 @@ if (isset($update_folder) and is_dir($update_folder)) {
             $exec = "rsync -vr --no-o --no-g --no-compress   {$update_folder}* {$item}";
             $output = exec($exec);
             print "Updating " . $item . "\n";
+            $udest = "/home/{$user}/public_html";
+            $output = exec("chown -R {$user}:{$user} {$udest}");
+
+
+
             if (isset($copy_external) and is_array($copy_external) and !empty($copy_external)) {
                 foreach ($copy_external as $source => $dest) {
                     $file = $source;
@@ -53,6 +58,9 @@ if (isset($update_folder) and is_dir($update_folder)) {
 
                     $exec = "cd /home/{$user}/public_html/; php artisan cache:clear ";
                     $output = exec($exec);
+
+
+
                 }
             }
         }

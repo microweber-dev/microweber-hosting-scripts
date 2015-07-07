@@ -50,12 +50,20 @@ $database_user = $opts['database_user'];
 $database_password = $opts['database_password'];
 
 
-$exec = "rsync -a --no-compress   {$mw_shared_dir} /home/{$opts['user']}/public_html/";
+
+$user_public_html_folder = "/home/{$opts['user']}/public_html/";
+if (isset($opts['public_html_folder'])) {
+	$user_public_html_folder = $opts['public_html_folder'];
+	$user_public_html_folder .= (substr($user_public_html_folder, -1) == '/' ? '' : '/');
+}
+
+
+$exec = "rsync -a --no-compress   {$mw_shared_dir} {$user_public_html_folder}";
 $message = $message . "\n\n\n" . $exec;
 $output = exec($exec);
 $message = $message . "\n\n\n" . $output;
 
-$exec = "rsync -a --no-compress   {$mw_shared_dir}.htaccess /home/{$opts['user']}/public_html/";
+$exec = "rsync -a --no-compress   {$mw_shared_dir}.htaccess {$user_public_html_folder}";
 $message = $message . "\n\n\n" . $exec;
 $output = exec($exec);
 $message = $message . "\n\n\n" . $output;
@@ -65,7 +73,7 @@ if (isset($copy_files) and is_array($copy_files) and !empty($copy_files)) {
     foreach ($copy_files as $file) {
         $file = str_replace('..', '', $file);
         $file = $mw_shared_dir . $file;
-        $newfile = "/home/{$opts['user']}/public_html/{$file}";
+        $newfile = "{$user_public_html_folder}{$file}";
         if (is_file($file)) {
             $exec = "cp -f $file $newfile";
             $output = exec($exec);
@@ -78,7 +86,7 @@ if (isset($copy_files) and is_array($copy_files) and !empty($copy_files)) {
 if (isset($copy_external) and is_array($copy_external) and !empty($copy_external)) {
     foreach ($copy_external as $source => $dest) {
         $file = $source;
-        $newfile = "/home/{$opts['user']}/public_html/{$dest}";
+        $newfile = "{$user_public_html_folder}{$dest}";
         if (is_file($file)) {
             $exec = "cp -f $file $newfile";
             $output = exec($exec);
@@ -91,14 +99,14 @@ if (isset($copy_external) and is_array($copy_external) and !empty($copy_external
 if (isset($remove_files) and is_array($remove_files) and !empty($remove_files)) {
     foreach ($remove_files as $dest) {
         $dest = str_replace('..', '', $dest);
-        $rm_dest = "/home/{$opts['user']}/public_html/{$dest}";
+        $rm_dest = "{$user_public_html_folder}{$dest}";
         $exec = "rm -rf $rm_dest";
         $output = exec($exec);
     }
 }
 
 
-$exec = "chown -R {$opts['user']}:{$opts['user']} /home/{$opts['user']}/public_html/*";
+$exec = "chown -R {$opts['user']}:{$opts['user']} {$user_public_html_folder}*";
 $message = $message . "\n\n\n" . $exec;
 $output = exec($exec);
 $message = $message . "\n\n\n" . $output;
@@ -119,7 +127,7 @@ if (isset($opts['database_host'])) {
     $database_host = '127.0.0.1';
 }
 
-$exec = "cd /home/" . $auth_user . "/public_html/;";
+$exec = "cd {$user_public_html_folder} ;";
 $exec .= "php artisan microweber:install ";
 $exec .= $contact_email . " " . $auth_user . " " . $auth_pass . " " . $database_host . " " . $database_name . " " . $database_user . " " . $database_password . " -p " . $database_prefix;
 $exec .= " -t " . $default_template . " -d 1 ";
@@ -136,7 +144,7 @@ if (!isset($opts['options']) and isset($install_options) and is_array($install_o
 if (isset($opts['options']) and is_array($opts['options']) and !empty($opts['options'])) {
     foreach ($opts['options'] as $option) {
         if (isset($option['option_key']) and isset($option['option_value']) and isset($option['option_group'])) {
-            $exec = "cd /home/" . $auth_user . "/public_html/;";
+            $exec = "cd {$user_public_html_folder} ; ";
             $exec .= " php artisan microweber:option \"{$option['option_key']}\" \"{$option['option_value']}\" \"{$option['option_group']}\"";
             $message = $message . "\n\n\n" . $exec;
 
@@ -147,24 +155,24 @@ if (isset($opts['options']) and is_array($opts['options']) and !empty($opts['opt
 }
 
 
-$exec = "chown -R {$opts['user']}:{$opts['user']} /home/{$opts['user']}/public_html/.htaccess";
+$exec = "chown -R {$opts['user']}:{$opts['user']} {$user_public_html_folder}.htaccess";
 $message = $message . "\n\n\n" . $exec;
 $output = exec($exec);
 $message = $message . "\n\n\n" . $output;
 
-$exec = "chown -R {$opts['user']}:{$opts['user']} /home/{$opts['user']}/public_html/*";
+$exec = "chown -R {$opts['user']}:{$opts['user']} {$user_public_html_folder}*";
 $message = $message . "\n\n\n" . $exec;
 $output = exec($exec);
 $message = $message . "\n\n\n" . $output;
 
 
 
-$exec = "chmod 755 {$opts['user']}:{$opts['user']} /home/{$opts['user']}/public_html/index.php";
+$exec = "chmod 755 {$opts['user']}:{$opts['user']} {$user_public_html_folder}index.php";
 $message = $message . "\n\n\n" . $exec;
 $output = exec($exec);
 $message = $message . "\n\n\n" . $output;
 
-$exec = "chmod 755 {$opts['user']}:{$opts['user']} /home/{$opts['user']}/public_html/";
+$exec = "chmod 755 {$opts['user']}:{$opts['user']} {$user_public_html_folder}";
 $message = $message . "\n\n\n" . $exec;
 $output = exec($exec);
 $message = $message . "\n\n\n" . $output;

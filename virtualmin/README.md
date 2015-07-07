@@ -33,9 +33,9 @@ Setup your installation and when you are ready can go for the install scripts se
 ```sh
 cd /usr/share/
 git clone https://github.com/microweber/microweber-hosting-scripts.git
-chmod +x /usr/share/microweber-hosting-scripts/virtualmin/download.php
+chmod +x /usr/share/microweber-hosting-scripts/common/download.php
 chmod +x /usr/share/microweber-hosting-scripts/virtualmin/install.php
-php /usr/share/microweber-hosting-scripts/virtualmin/download.php
+php /usr/share/microweber-hosting-scripts/common/download.php
 
 ```
 These scripts will download and unzip the Microweber source in `/usr/share/microweber-latest/`
@@ -64,6 +64,6 @@ If you need further configuration you can rename the file `config.dist.php` to `
 If you want to update all sites to the current MW version. Just run the update scripts with: 
 
 ```sh 
-php /usr/share/microweber-hosting-scripts/virtualmin/update.php
+php /usr/share/microweber-hosting-scripts/common/update.php
 ```
 
