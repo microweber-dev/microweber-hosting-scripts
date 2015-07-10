@@ -58,12 +58,12 @@ if (isset($opts['public_html_folder'])) {
 }
 
 
-$exec = "rsync -a --no-compress   {$mw_shared_dir} {$user_public_html_folder}";
+$exec = "rsync -a {$mw_shared_dir} {$user_public_html_folder}";
 $message = $message . "\n\n\n" . $exec;
 $output = exec($exec);
 $message = $message . "\n\n\n" . $output;
 
-$exec = "rsync -a --no-compress   {$mw_shared_dir}.htaccess {$user_public_html_folder}";
+$exec = "rsync -a {$mw_shared_dir}.htaccess {$user_public_html_folder}";
 $message = $message . "\n\n\n" . $exec;
 $output = exec($exec);
 $message = $message . "\n\n\n" . $output;
@@ -194,6 +194,11 @@ if (filter_var($to, FILTER_VALIDATE_EMAIL)) {
     }
     $subject .= ' ' . $default_template;
     mail($to, $subject, $message);
+}
+
+
+if (isset($opts['install_debug_file'])) {
+    file_put_contents($opts['install_debug_file'],$message);
 }
 
 exit();

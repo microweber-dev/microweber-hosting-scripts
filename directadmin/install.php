@@ -1,11 +1,11 @@
-#!/usr/bin/php
 <?php
+
 
 
 $config = $_SERVER;
 
-if (isset($config["VIRTUALSERVER_ACTION"])) {
-    if (($config["VIRTUALSERVER_ACTION"]) == 'CREATE_DOMAIN') {
+if (isset($config["account"])) {
+    if (strtolower($config["account"]) == 'on') {
 
         $opts = array();
 
@@ -17,18 +17,21 @@ if (isset($config["VIRTUALSERVER_ACTION"])) {
         // $opts['debug_email_subject'] = 'New site';
 
 
-        $opts['user'] = $config["VIRTUALSERVER_USER"];
-        $opts['pass'] = $config["VIRTUALSERVER_PASS"];
-        $opts['email'] = $config["VIRTUALSERVER_EMAILTO"];
+        $opts['user'] = $config["username"];
+        $opts['pass'] = $config["passwd"];
+        $opts['email'] = $config["email"];
 
-        if (isset($config["VIRTUALSERVER_PUBLIC_HTML_PATH"])) {
-            $opts['public_html_folder'] = $config ["VIRTUALSERVER_PUBLIC_HTML_PATH"];
+
+        $opts['public_html_folder'] = '/home/' . $config["username"] . '/public_html/' . $config["domain"] . '/';
+        if (is_file($opts['public_html_folder'] . 'index.html')) {
+            unlink($opts['public_html_folder'] . 'index.html');
         }
 
         $opts['default_template'] = 'liteness';
-        $opts['database_name'] = $config["VIRTUALSERVER_DB_MYSQL"];
-        $opts['database_user'] = $config["VIRTUALSERVER_MYSQL_USER"];
-        $opts['database_password'] = $config["VIRTUALSERVER_PASS"];
+        $opts['database_name'] = $config["username"] . "_mw";
+        $opts['database_user'] = $config["username"];
+        $opts['database_password'] = $config["passwd"];
+        // $opts['install_debug_file'] = __DIR__.'/debug.txt';
 
         //  $opts['options'] = array(
         //      array('option_key' => 'website_title', 'option_value' => 'My Web', 'option_group' => 'website'),
@@ -40,3 +43,4 @@ if (isset($config["VIRTUALSERVER_ACTION"])) {
     }
 }
 
+ 
