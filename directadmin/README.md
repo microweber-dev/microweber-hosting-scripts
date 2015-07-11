@@ -1,7 +1,7 @@
 # Hosting scripts for deploying on Direct Admin
 
 
-Follow those steps to have your Virtualmin server deploy new Microweber installation on new account creation. 
+Follow those steps to have your Direct Admin server deploy new Microweber installation on new account creation.
 
 Make sure you cover the [server requirements](https://github.com/microweber/microweber#general-requirements "") and you can install Microweber normally, before employing those automated methods.
 
@@ -19,13 +19,16 @@ cd /usr/share/
 git clone https://github.com/microweber/microweber-hosting-scripts.git
 chmod +x /usr/share/microweber-hosting-scripts/common/download.php
 chmod +x /usr/share/microweber-hosting-scripts/directadmin/install.php
+chmod +x /usr/share/microweber-hosting-scripts/directadmin/mysql_create.sh
 php /usr/share/microweber-hosting-scripts/directadmin/download.php
 
 ```
 These scripts will download and unzip the Microweber source in `/usr/share/microweber-latest/`
 
 
-### Automate install
+### Automate the install
+
+Create a custom package called "microweber" in Direct Admin
 
 You must edit the user_create_post.sh file
 
