@@ -1,0 +1,369 @@
+<application packaged="2015-05-07T06:34:37" version="1.2" xmlns="http://apstandard.com/ns/1">
+    <id>http://microweber.com/</id>
+    <name>Microweber</name>
+    <version>1.0.3</version>
+    <release>1</release>
+    <homepage>http://microweber.com/</homepage>
+    <vendor>
+        <name>microweber.com</name>
+        <homepage>http://microweber.com/</homepage>
+        <icon path="images/icon.png"/>
+    </vendor>
+    <packager>
+        <name>Odin</name>
+        <homepage>http://www.odin.com/</homepage>
+        <icon path="images/packager.png"/>
+        <uri>uuid:714f0a7b-85d6-4eb8-b68e-40f9acbb3103</uri>
+    </packager>
+    <presentation>
+        <summary>microweber is a state-of-the-art semantic personal publishing platform with a focus on aesthetics, web
+            standards, and usability.
+        </summary>
+        <description>microweber is a state-of-the-art semantic personal publishing platform with a focus on aesthetics,
+            web standards, and usability. What a mouthful. microweber is both free and priceless at the same time. More
+            simply, microweber is what you use when you want to work with your blogging software, not fight it.With
+            microweber, you can create any type of website you want: a personal blog or website, a photoblog, a business
+            website, a professional portfolio, a government website, a magazine or news website, an online community,
+            even a network of websites. You can make your website beautiful with themes, and extend it with plugins. You
+            can even build your very own application.
+        </description>
+        <icon path="images/icon.png"/>
+        <screenshot path="images/admin_page.jpg">
+            <description>
+                Admin page.
+            </description>
+        </screenshot>
+        <changelog>
+            <version release="1" version="1.0.3">
+                <entry>http://microweber.org/</entry>
+            </version>
+
+        </changelog>
+        <categories>
+            <category>Web/Blog</category>
+            <category>CMS</category>
+            <category>eCommerce</category>
+        </categories>
+        <languages>
+            <language>en</language>
+        </languages>
+    </presentation>
+    <upgrade
+            match="/application/version &gt; '2.0' or /application/version = '2.0' and /application/release &gt;= '1'"/>
+    <service id="microweber">
+        <license must-accept="true">
+            <text>
+                <name>Apache 2</name>
+                <file>htdocs/LICENSE</file>
+            </text>
+        </license>
+        <presentation>
+            <name>microweber</name>
+            <summary>Microweber Drag and Drop CMS</summary>
+            <infolinks>
+                <link class="support" href="http://microweber.com/support/">Microweber Support</link>
+            </infolinks>
+            <entry-points>
+                <entry class="control-panel" dst="/admin" method="GET">
+                    <label>Administrative interface</label>
+                    <variable name="username" value-of-setting="admin_name"/>
+                    <variable name="password" value-of-setting="admin_password"/>
+                </entry>
+
+            </entry-points>
+        </presentation>
+        <settings>
+            <group class="authn">
+                <name>Administrator's preferences</name>
+                <name xml:lang="en-US">Administrator's preferences</name>
+                <name xml:lang="fr-FR">Les préférences de l'administrateur</name>
+                <name xml:lang="de-DE">Einstellungen des Administrators</name>
+                <name xml:lang="es-ES">Preferencias del administrador</name>
+                <name xml:lang="pl-PL">Logowanie administratora</name>
+                <name xml:lang="ru-RU">Настройки авторизации</name>
+                <name xml:lang="pt-BR">Preferências do administrador</name>
+                <setting class="login" default-value="admin" id="admin_name" max-length="32" min-length="1"
+                         regex="^[a-zA-Z][0-9a-zA-Z_.\-@]*" type="string">
+                    <name>Administrator's login</name>
+                    <name xml:lang="en-US">Administrator's login</name>
+                    <name xml:lang="fr-FR">La connexion de l'administrateur</name>
+                    <name xml:lang="de-DE">Benutzername des Administrators</name>
+                    <name xml:lang="es-ES">Inicio de sesión del administrador</name>
+                    <name xml:lang="pl-PL">Logowanie administratora</name>
+                    <name xml:lang="ru-RU">Логин администратора</name>
+                    <name xml:lang="pt-BR">De login do administrador</name>
+                    <error-message>Please make sure the text you entered starts with a letter and continues with either
+                        numbers, letters, underscores or hyphens.
+                    </error-message>
+                    <error-message xml:lang="en-US">Please make sure the text you entered starts with a letter and
+                        continues with either numbers, letters, underscores or hyphens.
+                    </error-message>
+                    <error-message xml:lang="ru-RU">Пожалуйста, убедитесь, что текст, который вы ввели, начинается с
+                        буквы, за которой следуют цифры, буквы, подчеркивания или дефисы. Максимальная длина текста не
+                        должна превышать 32 символа.
+                    </error-message>
+                    <error-message xml:lang="fr-FR">Vérifiez si le texte que vous avez saisi commence par une lettre et
+                        comporte des caractères alphanumériques, des tirets ou des tirets-bas. Le texte doit comporter
+                        moins de 32 caractères.
+                    </error-message>
+                    <error-message xml:lang="de-DE">Bitte vergewissern Sie sich, dass der von Ihnen eingegebene Text mit
+                        einem Buchstaben beginnt und danach mit Zahlen, Buchstaben, Unterstrichen oder Bindestrichen
+                        fortgeführt wird. Die maximal zulässige Textlänge beträgt 32 Zeichen.
+                    </error-message>
+                    <error-message xml:lang="pl-PL">Prosimy o upewnienie się, że wprowadzany tekst zaczyna się od
+                        litery, a także że pozostałe znaki należą do którejś z grup: litery, cyfry, podkreślenia lub
+                        łączniki. Długość tekstu nie powinna być dłuższa niż 32 znaki.
+                    </error-message>
+                    <error-message xml:lang="es-ES">Asegúrese de que el texto introducido empieza por una letra y
+                        continúa con números, letras, guiones o guiones bajos. La longitud máxima del texto no debería
+                        ser superior a 32 caracteres.
+                    </error-message>
+                    <error-message xml:lang="pt-BR">Certifique-se de que o texto adicionado é iniciado por uma letra e
+                        continua com números, caracteres latinos, sublinhados ou hifens. O máximo permitido não deve
+                        exceder 32 caracteres.
+                    </error-message>
+                </setting>
+                <setting class="password" id="admin_password" min-length="1" type="password">
+                    <name>Password</name>
+                    <name xml:lang="en-US">Password</name>
+                    <name xml:lang="da-DK">Adgangskode</name>
+                    <name xml:lang="de-DE">Passwort</name>
+                    <name xml:lang="el-GR">Κωδικός πρόσβασης</name>
+                    <name xml:lang="es-ES">Contraseña</name>
+                    <name xml:lang="fi-FI">Salasana</name>
+                    <name xml:lang="fr-FR">Mot de passe</name>
+                    <name xml:lang="it-IT">Password</name>
+                    <name xml:lang="ja-JP">パスワード</name>
+                    <name xml:lang="ko-KR">암호</name>
+                    <name xml:lang="nb-NO">Passord</name>
+                    <name xml:lang="nl-NL">Wachtwoord</name>
+                    <name xml:lang="pt-BR">Senha</name>
+                    <name xml:lang="pt-PT">Palavra-passe</name>
+                    <name xml:lang="pl-PL">Hasło</name>
+                    <name xml:lang="ru-RU">Пароль</name>
+                    <name xml:lang="sv-SE">Lösenord</name>
+                    <name xml:lang="tr-TR">Parola</name>
+                    <name xml:lang="uk-UA">Пароль</name>
+                    <name xml:lang="zh-CN">密码</name>
+                    <name xml:lang="zh-TW">密碼</name>
+                </setting>
+            </group>
+            <group class="vcard">
+                <name>Main configuration</name>
+                <name xml:lang="en-US">Main configuration</name>
+                <name xml:lang="da-DK">E-mailkonfiguration</name>
+                <name xml:lang="de-DE">E-Mail-Konfiguration</name>
+                <name xml:lang="el-GR">Ρυθμίσεις αλληλογραφίας</name>
+                <name xml:lang="es-ES">Configuración del correo</name>
+                <name xml:lang="fi-FI">Sähköpostin määritykset</name>
+                <name xml:lang="fr-FR">Configuration de la messagerie</name>
+                <name xml:lang="it-IT">Configurazione della posta</name>
+                <name xml:lang="ja-JP">メール構成</name>
+                <name xml:lang="ko-KR">메일 구성</name>
+                <name xml:lang="nb-NO">E-postkonfigurasjon</name>
+                <name xml:lang="nl-NL">Mailinstellingen</name>
+                <name xml:lang="pt-BR">Configuração de caxia de e-mail</name>
+                <name xml:lang="pt-PT">Configuração de correio</name>
+                <name xml:lang="pl-PL">Konfiguracja poczty</name>
+                <name xml:lang="ru-RU">Настройка почты</name>
+                <name xml:lang="sv-SE">E-postkonfiguration</name>
+                <name xml:lang="tr-TR">Posta yapılandırması</name>
+                <name xml:lang="uk-UA">Поштове конфігурація</name>
+                <name xml:lang="zh-CN">邮件配置</name>
+                <name xml:lang="zh-TW">郵件配置</name>
+                <group class="email">
+                    <setting class="value" id="admin_email" type="email">
+                        <name>Administrator's email</name>
+                        <name xml:lang="en-US">Administrator's email</name>
+                        <name xml:lang="da-DK">Administratorens e-mail</name>
+                        <name xml:lang="de-DE">E-Mail-Adresse des Administrators</name>
+                        <name xml:lang="el-GR">Διεύθυνση ηλεκτρονικού ταχυδρομείου διαχειριστή</name>
+                        <name xml:lang="es-ES">Email del administrador</name>
+                        <name xml:lang="fi-FI">Järjestelmänvalvojan sähköposti</name>
+                        <name xml:lang="fr-FR">Adresse mail de l'administrateur</name>
+                        <name xml:lang="it-IT">Email dell'amministratore</name>
+                        <name xml:lang="ja-JP">管理者のメールアドレス</name>
+                        <name xml:lang="ko-KR">관리자 이메일</name>
+                        <name xml:lang="nb-NO">Administrators e-post</name>
+                        <name xml:lang="nl-NL">E-mail van beheerder</name>
+                        <name xml:lang="pt-BR">E-mail do administrador</name>
+                        <name xml:lang="pt-PT">E-mail do administrador</name>
+                        <name xml:lang="pl-PL">Adres e-mail administratora</name>
+                        <name xml:lang="ru-RU">Почта администратора</name>
+                        <name xml:lang="sv-SE">Administratörens e-post</name>
+                        <name xml:lang="tr-TR">Yöneticinin e-postası</name>
+                        <name xml:lang="uk-UA">Поштови адрес адміністратора</name>
+                        <name xml:lang="zh-CN">管理员的电子邮件</name>
+                        <name xml:lang="zh-TW">管理員的電子郵件</name>
+                    </setting>
+                </group>
+                <group class="fn n">
+                    <setting class="organization-name" default-value="My CMS" id="title" min-length="1" type="string">
+                        <name>Site name</name>
+                        <name xml:lang="en-US">Site name</name>
+                        <name xml:lang="da-DK">Webstedsnavn</name>
+                        <name xml:lang="de-DE">Website-Name</name>
+                        <name xml:lang="el-GR">Όνομα τοποθεσίας</name>
+                        <name xml:lang="es-ES">Nombre del sitio</name>
+                        <name xml:lang="fi-FI">Sivuston nimi</name>
+                        <name xml:lang="fr-FR">Nom du site</name>
+                        <name xml:lang="it-IT">Nome del sito</name>
+                        <name xml:lang="ja-JP">サイト名</name>
+                        <name xml:lang="ko-KR">사이트 이름</name>
+                        <name xml:lang="nb-NO">Områdenavn</name>
+                        <name xml:lang="nl-NL">Sitenaam</name>
+                        <name xml:lang="pt-BR">Nome do site</name>
+                        <name xml:lang="pt-PT">Nome do Site</name>
+                        <name xml:lang="pl-PL">Nazwa strony</name>
+                        <name xml:lang="ru-RU">Имя сайта</name>
+                        <name xml:lang="sv-SE">Webplatsnamn</name>
+                        <name xml:lang="tr-TR">Tesis adı</name>
+                        <name xml:lang="uk-UA">Ім’я сайту</name>
+                        <name xml:lang="zh-CN">网站名称</name>
+                        <name xml:lang="zh-TW">網站名稱</name>
+                    </setting>
+                </group>
+            </group>
+            <group class="web">
+                <setting class="locale" default-value="en-US" id="locale" type="enum">
+                    <name>Interface language</name>
+                    <name xml:lang="en-US">Interface language</name>
+                    <name xml:lang="da-DK">Grænsefladesprog</name>
+                    <name xml:lang="de-DE">Sprache der Benutzeroberfläche</name>
+                    <name xml:lang="el-GR">Γλώσσα περιβάλλοντος εργασίας</name>
+                    <name xml:lang="es-ES">Idioma del interfaz</name>
+                    <name xml:lang="fi-FI">Käyttöliittymän kieli</name>
+                    <name xml:lang="fr-FR">Langue de l'interface</name>
+                    <name xml:lang="it-IT">Lingua dell'interfaccia</name>
+                    <name xml:lang="ja-JP">インターフェース言語</name>
+                    <name xml:lang="ko-KR">인터페이스 언어</name>
+                    <name xml:lang="nb-NO">Grensesnitt språk</name>
+                    <name xml:lang="nl-NL">Schermtaal</name>
+                    <name xml:lang="pt-BR">Idioma da interface</name>
+                    <name xml:lang="pt-PT">Língua da interface</name>
+                    <name xml:lang="pl-PL">Język interfejsu</name>
+                    <name xml:lang="ru-RU">Язык интерфейса</name>
+                    <name xml:lang="sv-SE">Gränssnittsspråk</name>
+                    <name xml:lang="tr-TR">Arayüz Dili</name>
+                    <name xml:lang="uk-UA">Мова інтерфейсу</name>
+                    <name xml:lang="zh-CN">界面语言</name>
+                    <name xml:lang="zh-TW">介面語言</name>
+                    <choice id="zh-CN">
+                        <name>Chinese Simplified</name>
+                    </choice>
+                    <choice id="zh-TW">
+                        <name>Chinese Traditional</name>
+                    </choice>
+                    <choice id="da-DK">
+                        <name>Danish</name>
+                    </choice>
+                    <choice id="nl-NL">
+                        <name>Dutch</name>
+                    </choice>
+                    <choice id="de-DE">
+                        <name>German</name>
+                    </choice>
+                    <choice id="en-US">
+                        <name>English</name>
+                    </choice>
+                    <choice id="fr-FR">
+                        <name>French</name>
+                    </choice>
+                    <choice id="it-IT">
+                        <name>Italian</name>
+                    </choice>
+                    <choice id="ja-JP">
+                        <name>Japanese</name>
+                    </choice>
+                    <choice id="ru-RU">
+                        <name>Russian</name>
+                    </choice>
+                    <choice id="pl-PL">
+                        <name>Polish</name>
+                    </choice>
+                    <choice id="pt-PT">
+                        <name>Portuguese (Portugal)</name>
+                    </choice>
+                    <choice id="es-ES">
+                        <name>Spanish</name>
+                    </choice>
+                    <choice id="tr-TR">
+                        <name>Turkish</name>
+                    </choice>
+                    <choice id="pt-BR">
+                        <name>Portuguese (Brazil)</name>
+                    </choice>
+                    <choice id="el-EL">
+                        <name>Greek</name>
+                    </choice>
+                    <choice id="fi-FI">
+                        <name>Finland</name>
+                    </choice>
+                    <choice id="id-ID">
+                        <name>Indonesia</name>
+                    </choice>
+                    <choice id="ko-KR">
+                        <name>Korean</name>
+                    </choice>
+                    <choice id="nb-NO">
+                        <name>Norwegian</name>
+                    </choice>
+                    <choice id="sv-SE">
+                        <name>Swedish</name>
+                    </choice>
+                    <choice id="uk-UA">
+                        <name>Ukraine</name>
+                    </choice>
+                    <choice id="vi-Vi">
+                        <name>Vietnamese</name>
+                    </choice>
+                    <choice id="th-Th">
+                        <name>Thai</name>
+                    </choice>
+                    <choice id="tl">
+                        <name>Filipino</name>
+                    </choice>
+                </setting>
+            </group>
+        </settings>
+        <requirements>
+            <php:version min="5.4.3" xmlns:php="http://apstandard.com/ns/1/php"/>
+            <php:extension xmlns:php="http://apstandard.com/ns/1/php">mysql</php:extension>
+            <php:safe-mode xmlns:php="http://apstandard.com/ns/1/php">false</php:safe-mode>
+            <db:db xmlns:db="http://apstandard.com/ns/1/db">
+                <db:id>main</db:id>
+                <db:default-name>microweber</db:default-name>
+                <db:can-use-tables-prefix>true</db:can-use-tables-prefix>
+                <db:server-type>mysql</db:server-type>
+                <db:server-min-version>5.0</db:server-min-version>
+            </db:db>
+        </requirements>
+        <provision>
+            <configuration-script name="configure">
+                <script-language>php</script-language>
+            </configuration-script>
+            <url-mapping>
+                <default-prefix>microweber</default-prefix>
+                <installed-size>59567372</installed-size>
+                <mapping path="htdocs" url="/">
+                    <php:permissions writable="true" xmlns:php="http://apstandard.com/ns/1/php"/>
+                    <php:handler xmlns:php="http://apstandard.com/ns/1/php">
+                        <php:extension>php</php:extension>
+                    </php:handler>
+                    <mapping url="userfiles">
+                        <php:permissions writable="true" xmlns:php="http://apstandard.com/ns/1/php"/>
+                    </mapping>
+                    <mapping url="storage">
+                        <php:permissions writable="true" xmlns:php="http://apstandard.com/ns/1/php"/>
+                    </mapping>
+                    <mapping url="app">
+                        <php:permissions writable="true" xmlns:php="http://apstandard.com/ns/1/php"/>
+                    </mapping>
+                    <mapping url="cache">
+                        <php:permissions writable="true" xmlns:php="http://apstandard.com/ns/1/php"/>
+                    </mapping>
+                </mapping>
+            </url-mapping>
+        </provision>
+    </service>
+</application>

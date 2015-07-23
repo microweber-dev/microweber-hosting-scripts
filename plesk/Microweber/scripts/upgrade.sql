@@ -1,0 +1,1 @@
+INSERT INTO @@DB_MAIN_PREFIX@@options (option_name, option_value, autoload) VALUES ('','','');

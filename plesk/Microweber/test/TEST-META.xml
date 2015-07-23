@@ -1,0 +1,6 @@
+<test>
+<ide-script entry-id="1">wpIDEtest.xml</ide-script>
+<ide-script entry-id="2">wpSiteIDEtest.xml</ide-script>
+<ide-script entry-id="3">wpThemeIDEtest.xml</ide-script>
+<ide-script entry-id="4">wpPluginIDEtest.xml</ide-script>
+</test>
