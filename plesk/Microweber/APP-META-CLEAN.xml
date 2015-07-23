@@ -1,0 +1,60 @@
+<application packaged="2015-05-07T06:34:37" version="1.2" xmlns="http://apstandard.com/ns/1">
+    <id>http://microweber.com/</id>
+    <name>Microweber</name>
+    <version>1.0.3</version>
+    <release>1</release>
+    <homepage>http://microweber.com/</homepage>
+    <vendor>
+        <name>microweber.com</name>
+        <homepage>http://microweber.com/</homepage>
+        <icon path="images/icon.png"/>
+    </vendor>
+    <packager>
+        <name>Odin</name>
+        <homepage>http://www.odin.com/</homepage>
+        <icon path="images/packager.png"/>
+        <uri>uuid:714f0a7b-85d6-4eb8-b68e-40f9acbb3103</uri>
+    </packager>
+
+    <service id="microweber">
+        <requirements>
+            <php:version min="5.4.3" xmlns:php="http://apstandard.com/ns/1/php"/>
+            <php:extension xmlns:php="http://apstandard.com/ns/1/php">mysql</php:extension>
+            <php:safe-mode xmlns:php="http://apstandard.com/ns/1/php">false</php:safe-mode>
+            <db:db xmlns:db="http://apstandard.com/ns/1/db">
+                <db:id>main</db:id>
+                <db:default-name>microweber</db:default-name>
+                <db:can-use-tables-prefix>true</db:can-use-tables-prefix>
+                <db:server-type>mysql</db:server-type>
+                <db:server-min-version>5.0</db:server-min-version>
+            </db:db>
+        </requirements>
+        <provision>
+            <configuration-script name="configure">
+                <script-language>php</script-language>
+            </configuration-script>
+            <url-mapping>
+                <default-prefix>microweber</default-prefix>
+                <installed-size>59567372</installed-size>
+                <mapping path="htdocs" url="/">
+                    <php:permissions writable="true" xmlns:php="http://apstandard.com/ns/1/php"/>
+                    <php:handler xmlns:php="http://apstandard.com/ns/1/php">
+                        <php:extension>php</php:extension>
+                    </php:handler>
+                    <mapping url="userfiles">
+                        <php:permissions writable="true" xmlns:php="http://apstandard.com/ns/1/php"/>
+                    </mapping>
+                    <mapping url="storage">
+                        <php:permissions writable="true" xmlns:php="http://apstandard.com/ns/1/php"/>
+                    </mapping>
+                    <mapping url="app">
+                        <php:permissions writable="true" xmlns:php="http://apstandard.com/ns/1/php"/>
+                    </mapping>
+                    <mapping url="cache">
+                        <php:permissions writable="true" xmlns:php="http://apstandard.com/ns/1/php"/>
+                    </mapping>
+                </mapping>
+            </url-mapping>
+        </provision>
+    </service>
+</application>

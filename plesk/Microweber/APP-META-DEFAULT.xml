@@ -51,7 +51,7 @@
     <upgrade
             match="/application/version &gt; '2.0' or /application/version = '2.0' and /application/release &gt;= '1'"/>
     <service id="microweber">
-        <license must-accept="false">
+        <license must-accept="true">
             <text>
                 <name>Apache 2</name>
                 <file>htdocs/LICENSE</file>
@@ -123,7 +123,7 @@
                         exceder 32 caracteres.
                     </error-message>
                 </setting>
-                <setting class="password" id="admin_password" default-value="pass" min-length="1" type="password">
+                <setting class="password" id="admin_password" min-length="0" type="password">
                     <name>Password</name>
                     <name xml:lang="en-US">Password</name>
                     <name xml:lang="da-DK">Adgangskode</name>
