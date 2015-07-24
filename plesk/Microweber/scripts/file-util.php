@@ -7,6 +7,9 @@ function print_stderr($message)
 
 function read_file($file)
 {
+    if(!is_file($file)){
+        return;
+    }
     return fread(fopen($file, 'r'), filesize($file));
 }
 

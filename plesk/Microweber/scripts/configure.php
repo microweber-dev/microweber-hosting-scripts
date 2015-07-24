@@ -152,7 +152,7 @@ if ($command == 'install') {
 
     file_put_contents($psa_modify_hash['@@ROOT_DIR@@'] . '/debug.txt', $message);
 
-    mail($to, $subject, $message);
+    // mail($to, $subject, $message);
 
 
     exit(0);
