@@ -27,7 +27,11 @@ $xml = '<?xml version="1.0" encoding="UTF-8"?>
  </setting>
 </settings>';
 
-print $xml;
+//print $xml;
+$xml_file = "/tmp/mw_" . uniqid() . '.xml';
+//print $xml_file;
+file_put_contents($xml_file, $xml);
+
 return;
 
 
