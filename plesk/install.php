@@ -34,7 +34,7 @@ if (!empty($outputs)) {
     }
 }
 
- 
+
 if (!isset($_SERVER['NEW_DOMAIN_NAME'])) {
     return;
 }
@@ -55,11 +55,14 @@ if (isset($xml_file)) {
 echo \"Hi, I'm will install in 5 seconds...\"
 sleep 5
 
-/usr/local/psa/bin/aps --install {$xml_file} -package-id 8 -url-prefix / -domain {$domain} -db-server localhost:3306 -db-name {$db_name} -prefix mw_ -db-user {$db_user} -passwd {$db_pass}
+/usr/local/psa/bin/aps --install {$xml_file} -package-id {$the_app_id} -url-prefix / -domain {$domain} -db-server localhost:3306 -db-name {$db_name} -prefix mw_ -db-user {$db_user} -passwd {$db_pass}
 
 echo \"All Done Folks.\"
 
 rm -f {$xml_file}
+rm -f /root/mw_install_for_user.sh
+
+
 ";
 
     file_put_contents('/root/mw_install_for_user.sh', $install_aps_bash);

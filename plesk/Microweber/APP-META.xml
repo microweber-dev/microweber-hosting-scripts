@@ -16,16 +16,9 @@
         <uri>uuid:714f0a7b-85d6-4eb8-b68e-40f9acbb3103</uri>
     </packager>
     <presentation>
-        <summary>microweber is a state-of-the-art semantic personal publishing platform with a focus on aesthetics, web
-            standards, and usability.
+        <summary>Microweber is drag and drop website builder.
         </summary>
-        <description>microweber is a state-of-the-art semantic personal publishing platform with a focus on aesthetics,
-            web standards, and usability. What a mouthful. microweber is both free and priceless at the same time. More
-            simply, microweber is what you use when you want to work with your blogging software, not fight it.With
-            microweber, you can create any type of website you want: a personal blog or website, a photoblog, a business
-            website, a professional portfolio, a government website, a magazine or news website, an online community,
-            even a network of websites. You can make your website beautiful with themes, and extend it with plugins. You
-            can even build your very own application.
+        <description>Microweber is drag and drop website builder.
         </description>
         <icon path="images/icon.png"/>
         <screenshot path="images/admin_page.jpg">
@@ -35,7 +28,7 @@
         </screenshot>
         <changelog>
             <version release="1" version="1.0.3">
-                <entry>http://microweber.org/</entry>
+                <entry>http://microweber.com/</entry>
             </version>
 
         </changelog>
@@ -58,13 +51,13 @@
             </text>
         </license>
         <presentation>
-            <name>microweber</name>
+            <name>Microweber</name>
             <summary>Microweber Drag and Drop CMS</summary>
             <infolinks>
                 <link class="support" href="http://microweber.com/support/">Microweber Support</link>
             </infolinks>
             <entry-points>
-                <entry class="control-panel" dst="/admin" method="GET">
+                <entry class="control-panel" dst="/api/user_login?redirect=admin" method="POST">
                     <label>Administrative interface</label>
                     <variable name="username" value-of-setting="admin_name"/>
                     <variable name="password" value-of-setting="admin_password"/>

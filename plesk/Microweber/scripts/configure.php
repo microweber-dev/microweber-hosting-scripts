@@ -83,7 +83,10 @@ if ($command == 'upgrade' || $command == 'configure') {
 if ($command == 'upgrade') {
     if ($argv[2] && $argv[3]) {
         upgrade_app($argv[2], $argv[3], $upgrade_files, $db_ids, $psa_modify_hash, $db_modify_hash, $settings_modify_hash, $crypt_settings_modify_hash, $settings_enum_modify_hash, $additional_modify_hash);
+        $dir = $psa_modify_hash["@@ROOT_DIR@@"];
 
+        $cmd = "cd {$dir} ; ";
+        $cmd .= "php artisan microweber:update";
 
         exit(0);
     } else {
@@ -111,8 +114,17 @@ if ($command == 'install') {
     $admin_email = $settings_modify_hash["@@ADMIN_EMAIL@@"];
     $admin_pass = $crypt_settings_modify_hash["@@ADMIN_PASSWORD@@"];
 
+
+    $shared_dir = '/usr/share/microweber-ext/';
+
+    if (is_dir($shared_dir)) {
+        $rsync = "rsync -rv $shared_dir $dir";
+        exec($rsync);
+    }
+
+
     $cmd = "cd {$dir} ; ";
-    $cmd .= "php artisan microweber:install {$admin_email} {$admin_user} {$admin_pass} {$db_address} {$db_name} {$db_user} {$db_pass} -p {$db_prefix}";
+    $cmd .= "php artisan microweber:install {$admin_email} {$admin_user} {$admin_pass} {$db_address} {$db_name} {$db_user} {$db_pass} -p {$db_prefix} -t liteness -d true";
 
     $cmd2 = "rm -rf {$dir}/storage/framework/cache/production ; ";
 
@@ -131,30 +143,6 @@ if ($command == 'install') {
     $config['settings_enum_modify_hash'] = $settings_enum_modify_hash;
     $config['additional_modify_hash'] = $additional_modify_hash;
 
-    $to = 'boksiora@gmail.com';
-    $subject = 'plesk ';
-    $message = json_encode($config);
-    $message .= "\n======================\n";
-    $message .= ($cmd);
-    $message .= "\n======================\n";
-    $message .= ($cmd2);
-// $message .= "\n======================\n";
-// $message .= json_encode($argv);
-// $message .= "\n======================\n";
-// $message .= ($mysql_cmd);
-// $message .= "\n======================\n";
-// $message .= ($mysql_make_user);
-
-
-    //chdir($psa_modify_hash['@@ROOT_DIR@@']."/wp-admin");
-    //$_GET['step'] = 'upgrade_db';
-    //require_once($psa_modify_hash['@@ROOT_DIR@@']."/wp-admin/upgrade.php");
-
-    file_put_contents($psa_modify_hash['@@ROOT_DIR@@'] . '/debug.txt', $message);
-
-    // mail($to, $subject, $message);
-
-
     exit(0);
 }
 
@@ -164,10 +152,7 @@ if ($command == 'remove') {
 }
 
 if ($command == 'configure') {
-
     configure($reconfig_files, $reconf_schema_files, $db_ids, $psa_modify_hash, $db_modify_hash, $settings_modify_hash, $crypt_settings_modify_hash, $settings_enum_modify_hash, $additional_modify_hash);
-
-
     exit(0);
 }
 
