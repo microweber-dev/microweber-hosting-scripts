@@ -23,6 +23,7 @@ if (isset($config["account"])) {
 
 
         $opts['public_html_folder'] = '/home/' . $config["username"] . '/public_html/' . $config["domain"] . '/';
+        $opts['public_html_folder'] = '/home/' . $config["username"] . '/domains/' . $config["domain"] . '/public_html/';
         if (is_file($opts['public_html_folder'] . 'index.html')) {
             unlink($opts['public_html_folder'] . 'index.html');
         }
