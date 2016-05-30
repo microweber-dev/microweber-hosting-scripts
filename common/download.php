@@ -20,8 +20,8 @@ $output = exec($cmd);
 $cmd = "cd $unzip_path; {$wget_cmd} https://microweber.com/download.php?update -O microweber-update.zip";
 $output = exec($cmd);
 
-$cmd = "cd $unzip_path; unzip -o microweber-latest.zip";
+$cmd = "cd $unzip_path; unzip -o microweber-latest.zip  -d {$unzip_path}microweber-latest";
 $output = exec($cmd);
 
-$cmd = "cd $unzip_path; unzip -o microweber-update.zip";
+$cmd = "cd $unzip_path; unzip -o microweber-update.zip  -d {$unzip_path}microweber-update";
 $output = exec($cmd);
