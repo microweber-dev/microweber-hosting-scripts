@@ -3,6 +3,12 @@ $mw_shared_dir = '/usr/share/microweber-latest/'; //add slash
 
 //return;
 set_time_limit(300);
+
+if (isset($_SERVER['argv'])) {
+    $argv = $_SERVER['argv'];
+}
+
+
 if (isset($argv)) {
     $argv_o = $argv;
 // Set up our variables to be usable by PHP
@@ -15,13 +21,13 @@ if (isset($argv)) {
         $opts[$key] = $value;
     }
 
-} 
+}
 
 
-if(!isset($opts) or empty($opts)){
-exit('$opts is empty');	
+if (!isset($opts) or empty($opts)) {
+    exit('$opts is empty');
 } else {
-file_put_contents('/usr/share/microweber-hosting-scripts/microweber_cpanel_install/opts.txt',json_encode($opts));
+//file_put_contents('/usr/share/microweber-hosting-scripts/microweber_cpanel_install/opts.txt',json_encode($opts));
 }
 
 $shared_install = false;
@@ -43,7 +49,7 @@ $default_template = 'liteness';
 // curl_setopt($ch, CURLOPT_HEADER, 0);
 // $config_for_domain = curl_exec($ch);
 // curl_close($ch);
- 
+
 
 // if ($config_for_domain) {
 //     $config_for_domain = @json_decode($config_for_domain, 1);
@@ -52,19 +58,16 @@ $default_template = 'liteness';
 //     }
 
 // }
- 
- 
- 
- $to = false;
-$message = json_encode($opts);
 
-// $to = 'Yvostaal@gmail.com';
+
+$to = false;
+$message = json_encode($opts);
 
 
 $subject = 'new_site';
 $message = json_encode($opts);
-$headers = 'From: admin@siteoplossing.nl' . "\r\n" .
-    'Reply-To: admin@siteoplossing.nl' . "\r\n" .
+$headers = 'From: admin@microweber.com' . "\r\n" .
+    'Reply-To: admin@microweber.com' . "\r\n" .
     'X-Mailer: PHP/' . phpversion();
 
 //mail($to, $subject, $result, $headers);
@@ -73,28 +76,23 @@ ini_set('error_log', '/usr/local/cpanel/logs/error_log_postwwacct');
 ini_set('display_errors', 1);
 
 
-include_once('/home/cpanelscripthelpers/xmlapi.php');
-
-
- 
-
-
-
+if (is_file('/home/cpanelscripthelpers/xmlapi.php')) {
+    require('/home/cpanelscripthelpers/xmlapi.php');
+} else {
+    require(dirname(__DIR__) . '/cpanel/cpanelscripthelpers/xmlapi.php');
+}
 $json_client = new \xmlapi('localhost');
 $auth_user = $opts['user'];
 $auth_pass = $opts['pass'];
 $contact_email = $opts['contactemail'];
 
 $domain = $opts['domain'];
- 
- 
+
 
 $subject .= ' ' . $default_template;
 
 
-
 $sqlite_file = "/home/{$opts['user']}/public_html/storage/database.sqlite";
-
 
 
 $json_client->set_output('json');
@@ -109,41 +107,6 @@ $database_name = $auth_user . $database_name_sufux;
 $database_name = substr($database_name, 0, 14);
 $database_user = $database_name;
 $database_password = md5($auth_user . '_' . rand() . uniqid() . rand());
-
- 
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
 
 
 //exec("mkdir /home/{$opts['user']}/public_html/cache/");
@@ -317,7 +280,6 @@ $link_paths[] = 'userfiles/modules/social_links';
 $link_paths[] = 'userfiles/modules/logo';
 
 
-
 $copy_files = array();
 $copy_files[] = 'index.php';
 $copy_files[] = '.htaccess';
@@ -361,9 +323,6 @@ $mkdirs[] = 'userfiles';
 $mkdirs[] = 'userfiles/media';
 $mkdirs[] = 'userfiles/modules';
 $mkdirs[] = 'userfiles/templates';
-
-
-
 
 
 foreach ($mkdirs as $link) {
@@ -428,7 +387,6 @@ $message = $message . "\n\n\n" . $exec;
 $output = exec($exec);
 
 
-
 $conf = array();
 $database_prefix = 'mw_';
 
@@ -457,10 +415,6 @@ $exec = "cd /home/" . $auth_user . "/public_html/;";
 $exec .= "php artisan microweber:install ";
 $exec .= $contact_email . " " . $auth_user . " " . $auth_pass . " " . $database_host . " " . $sqlite_file . " " . $database_user . " " . $database_password . " sqlite -p " . $database_prefix;
 $exec .= " -t " . $default_template . " -d 1 --env={$domain}";
-
-
-
- 
 
 
 $message = $message . "\n\n\n" . $exec;
@@ -508,7 +462,7 @@ $message = $message . "\n\n\n" . $exec;
 $output = exec($exec);
 $message = $message . "\n\n\n" . $output;
 
-mail($to, $subject, $message, $headers);
+//mail($to, $subject, $message, $headers);
 
 
 exit();

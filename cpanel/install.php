@@ -1,4 +1,9 @@
 <?php
+
+if (isset($_SERVER['argv'])) {
+    $argv = $_SERVER['argv'];
+}
+
 if (!isset($opts)) {
     $opts = array();
     $argv0 = array_shift($argv);

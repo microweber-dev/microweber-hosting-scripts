@@ -1,7 +1,6 @@
 <?php
 
 
-
 $config = $_SERVER;
 
 if (isset($config["account"])) {
@@ -22,7 +21,7 @@ if (isset($config["account"])) {
         $opts['email'] = $config["email"];
 
 
-        $opts['public_html_folder'] = '/home/' . $config["username"] . '/public_html/' . $config["domain"] . '/';
+        //  $opts['public_html_folder'] = '/home/' . $config["username"] . '/public_html/' . $config["domain"] . '/';
         $opts['public_html_folder'] = '/home/' . $config["username"] . '/domains/' . $config["domain"] . '/public_html/';
         if (is_file($opts['public_html_folder'] . 'index.html')) {
             unlink($opts['public_html_folder'] . 'index.html');
@@ -36,7 +35,9 @@ if (isset($config["account"])) {
 
         //  $opts['options'] = array(
         //      array('option_key' => 'website_title', 'option_value' => 'My Web', 'option_group' => 'website'),
-        //      array('option_key' => 'items_per_page', 'option_value' => '30', 'option_group' => 'website')
+        //      array('option_key' => 'items_per_page', 'option_value' => '30', 'option_group' => 'website'),
+        //      array('option_key' => 'language', 'option_value' => 'pl', 'option_group' => 'website'),
+        //      array('option_key' => 'currency', 'option_value' => 'PLN', 'option_group' => 'payments')
         //  );
 
 
