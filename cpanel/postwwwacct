@@ -2,6 +2,12 @@
 <?php
 
 // Set up our variables to be usable by PHP
+
+if(isset($_SERVER['argv']) and !empty($_SERVER['argv'])){
+    $argv = $_SERVER['argv'];
+}
+
+
 $opts = array();
 $argv0 = array_shift($argv);
 
@@ -16,7 +22,7 @@ require('/usr/share/microweber-hosting-scripts/cpanel/install.php');
 
 
 $msg = print_r($opts, true);
-mail("boksiora@gmail.com", "debug", $msg);
+//mail("boksiora@gmail.com", "debug", $msg);
 
 exit();
 
