@@ -1,0 +1,55 @@
+#cloud-config
+
+# apt settings
+
+apt_update: false
+apt_upgrade: true
+apt_preserve_sources_list: true
+
+# apt sources for packages
+
+apt_sources:
+ - source: "ppa:nginx/stable"
+   keyid: C300EE8C
+   filename: nginx-ppa.list
+ - source: "ppa:ondrej/php"
+   keyid: E5267A6C
+
+# setup packages
+
+packages:
+ - nginx
+ - php7.1-fpm
+ - php7.1-xml
+ - php7.1-mysql
+ - php7.1-gd
+ - php7.1-json
+ - php7.1-curl
+ - php7.1-intl
+ - openssl
+ - mysql-server
+ - wget
+ - zip
+ - unzip
+
+# download config
+
+runcmd:
+ - wget https://fonline-status.ru/microweber.conf -P /etc/nginx/conf.d/
+ - mkdir /var/www/microweber
+ - wget https://github.com/microweber/dist/raw/master/microweber-latest.zip -P /tmp
+ - unzip /tmp/microweber-latest.zip -d /var/www/microweber
+ - rm -rf /etc/nginx/sites-available && rm -rf /etc/nginx/sites-enabled
+ - chown -R www-data:www-data /var/www/microweber
+ - chmod -R 755 /var/www/microweber
+ - mysql -e "create database microweber; create user 'microweber'@'localhost' identified by 'changeme'; grant all privileges on microweber . * to 'microweber'@'localhost'; flush privileges;"
+ - systemctl restart nginx
+
+# final message
+
+final_message: "Microweber CMS is finally up, after $UPTIME seconds, rebooting"
+
+power_state:
+ mode: reboot
+ message: Bye Bye
+ condition: True
