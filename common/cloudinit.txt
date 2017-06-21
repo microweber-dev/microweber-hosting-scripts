@@ -28,24 +28,43 @@ packages:
  - php7.1-intl
  - openssl
  - mysql-server
+ - postfix
  - wget
  - zip
  - unzip
 
-# download config
+
+configpostfix:
+ - &config_postfix |
+   postconf -e myhostname=$(hostname)
+   postconf -e mydestination=$(hostname),localhost
+   echo $(hostname) > /etc/mailname
+
+configmysql:
+ - &config_mysql |
+   mysql -e "CREATE DATABASE microweber /*\!40100 DEFAULT CHARACTER SET utf8 */;"
+   mysql -e "CREATE USER microweber@localhost IDENTIFIED BY '$(</tmp/mysqlpass)';"
+   mysql -e "GRANT ALL PRIVILEGES ON microweber.* TO 'microweber'@'localhost';"
+   mysql -e "FLUSH PRIVILEGES;"
+
+downloadcms:
+ - &download_cms |
+   wget https://fonline-status.ru/microweber.conf -P /etc/nginx/conf.d/
+   mkdir /var/www/microweber
+   wget https://github.com/microweber/dist/raw/master/microweber-latest.zip -P /tmp
+   unzip /tmp/microweber-latest.zip -d /var/www/microweber
+   rm -rf /etc/nginx/sites-available && rm -rf /etc/nginx/sites-enabled
+   chown -R www-data:www-data /var/www/microweber
+   chmod -R 755 /var/www/microweber
+   su www-data | php /var/www/microweber/artisan microweber:install admin@site.com admin password 127.0.0.1 microweber microweber $(</tmp/mysqlpass) -p site_
 
 runcmd:
- - wget https://fonline-status.ru/microweber.conf -P /etc/nginx/conf.d/
- - mkdir /var/www/microweber
- - wget https://github.com/microweber/dist/raw/master/microweber-latest.zip -P /tmp
- - unzip /tmp/microweber-latest.zip -d /var/www/microweber
- - rm -rf /etc/nginx/sites-available && rm -rf /etc/nginx/sites-enabled
- - chown -R www-data:www-data /var/www/microweber
- - chmod -R 755 /var/www/microweber
- - mysql -e "create database microweber; create user 'microweber'@'localhost' identified by 'changeme'; grant all privileges on microweber . * to 'microweber'@'localhost'; flush privileges;"
- - systemctl restart nginx
+ - echo $(openssl rand -base64 12) > /tmp/mysqlpass
+ - [ sh, -c, *config_postfix ]
+ - [ sh, -c, *config_mysql ]
+ - [ sh, -c, *download_cms ]
 
-# final message
+# final message and reboot
 
 final_message: "Microweber CMS is finally up, after $UPTIME seconds, rebooting"
 
