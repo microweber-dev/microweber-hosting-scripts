@@ -49,7 +49,7 @@ configmysql:
 
 downloadcms:
  - &download_cms |
-   wget https://fonline-status.ru/microweber.conf -P /etc/nginx/conf.d/
+   wget https://raw.githubusercontent.com/microweber/microweber-hosting-scripts/master/common/microweber.conf -P /etc/nginx/conf.d/
    mkdir /var/www/microweber
    wget https://github.com/microweber/dist/raw/master/microweber-latest.zip -P /tmp
    unzip /tmp/microweber-latest.zip -d /var/www/microweber
