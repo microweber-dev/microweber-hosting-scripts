@@ -108,7 +108,7 @@ Test the connection and you should see SUCCESS
 ![img](img/whmcs6.png "img")
 
 
-After that you can also create accounts from WHMCS and they will do the instalation in cPanel
+After that you can also create accounts from WHMCS and they will do the installation in cPanel
 
 
 
