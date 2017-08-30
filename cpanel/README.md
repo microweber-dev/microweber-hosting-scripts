@@ -75,11 +75,11 @@ Execute `nano /scripts/postwwwacct` and enter this text
 
  
 
-
+You can create account from WHM/cPanel and you will see the new website of the user
 
  
  
-## Setup WHMCS and connect it to cPanel
+## Setup Billing with WHMCS and connect it to cPanel
 
 Go on Setup -> Products/Services -> Servers and add new server 
 
@@ -106,3 +106,16 @@ Get the token and paste it in WHMCS
 Test the connection and you should see SUCCESS 
 
 ![img](img/whmcs6.png "img")
+
+
+After that you can also create accounts from WHMCS and they will do the instalation in cPanel
+
+
+
+
+
+## Update Microweber
+
+You can update by downloading the new version with
+ 
+`php /usr/share/microweber-hosting-scripts/common/download.php`

@@ -37,12 +37,18 @@ if (isset($opts['domain'])) {
         $auth_user = $opts['user'];
         $auth_pass = $opts['pass'];
         $contact_email = $opts['contactemail'];
+        if(!$contact_email){
+            $contact_email = 'admin@localhost';
+        }
+        $domain = $opts['domain'];
 
+        $default_template = 'liteness';
 
         $database_name = $auth_user . '_' . uniqid() . rand();
         $database_name = substr($database_name, 0, 14);
         $database_user = $database_name;
         $database_password = md5($auth_user . '_' . rand() . uniqid() . rand());
+        $sqlite_file = "/home/{$opts['user']}/public_html/storage/database.sqlite";
 
 
         $opts['user'] = $opts['user'];
@@ -139,21 +145,32 @@ if (isset($opts['domain'])) {
         $output = exec($exec);
         $message = $message . "\n\n\n" . $output;
 
+        $exec = "chown -R {$opts['user']}:{$opts['user']} /home/{$opts['user']}/public_html/.htaccess";
+        $message = $message . "\n\n\n" . $exec;
+        $output = exec($exec);
+        $message = $message . "\n\n\n" . $output;
+
+        $exec = "touch /home/{$opts['user']}/public_html/.env";
+        $output = exec($exec);
+
+        $exec = "chown -R {$opts['user']}:{$opts['user']} /home/{$opts['user']}/public_html/.env";
+        $message = $message . "\n\n\n" . $exec;
+        $output = exec($exec);
+        $message = $message . "\n\n\n" . $output;
+
 
         $exec = "cd /home/" . $auth_user . "/public_html/;";
         $exec .= "php artisan microweber:install ";
         $exec .= $contact_email . " " . $auth_user . " " . $auth_pass . " " . $database_host . " " . $sqlite_file . " " . $database_user . " " . $database_password . " sqlite -p " . $database_prefix;
-        $exec .= " -t " . $default_template . " -d 1 --env={$domain}";
+        $exec .= " -t " . $default_template . " -d 1 --env={$domain}"; //
 
+       // @file_put_contents(__DIR__.DIRECTORY_SEPARATOR.'log.txt',$exec);
 
         $message = $message . "\n\n\n" . $exec;
         shell_exec($exec);
 
 
-        $exec = "chown -R {$opts['user']}:{$opts['user']} /home/{$opts['user']}/public_html/.htaccess";
-        $message = $message . "\n\n\n" . $exec;
-        $output = exec($exec);
-        $message = $message . "\n\n\n" . $output;
+
 
 
         $exec = "rm -rvf /home/{$opts['user']}/public_html/storage/framework/cache/*";
