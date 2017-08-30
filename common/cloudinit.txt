@@ -10,10 +10,47 @@ apt_preserve_sources_list: true
 
 apt_sources:
  - source: "ppa:nginx/stable"
-   keyid: C300EE8C
    filename: nginx-ppa.list
+   key: |
+     -----BEGIN PGP PUBLIC KEY BLOCK-----
+     Version: GnuPG v1
+
+     mI0ETEc2OgEEALxNbtwubq7RMxez4yamifApqlEFYqcA+vvdOF0IJWK1h/+NcAdY
+     dmZ+g+j4q5n93qaCvI21jT6ldLvHUq2X1N506GIV21/Rhryc3WWA3F+cXwQ14uvu
+     2IkQibJ57+9JGgMpOglufOKltj7P/YdsXffBTUBDuhFYf7UaYm1Qzk1VABEBAAG0
+     EExhdW5jaHBhZCBTdGFibGWItgQTAQIAIAUCTEc2OgIbAwYLCQgHAwIEFQIIAwQW
+     AgMBAh4BAheAAAoJEACm8KPDAO6MudcD/i2RPS//GmQ7/dLu+S27awxdiNqjL9mI
+     BKjfrwp+Y3wg2315pUWa3y3s7NT+f5Vws5AWGZ46uopHTg4MLZaXUxoja8lJgoKv
+     6YpU6ptz1QPl/ISq3DozvelOcKPeKsvcz2L0ayZCK9LhkT2kMmVzRQO3v15bdG2e
+     iamGicO0w/ouiQIcBBABAgAGBQJNMFdUAAoJELlvIwCtEcvu8M4P/1zwizfSeIa3
+     t0wU0zZzr3BpLnhWrWBghPZS/Wem3biVMs6N22W8xXNiAGHWqTssWggd0O8/NXMK
+     UCfc8KMAPVFNBo6TM247eFc0FA2CMUFh4AGh2YvwoNQxJinugiWUALrFm9xGXKAS
+     vhvbSJCU8SAtQFKGxjQbe6e5/exkj/YUpxfisyOYffsL9PSif4V8fjb4IQtTXAW/
+     i+zDQq1ow5jsw6z7si1i2ADWpsjjd85uhSzioz2lI6j5DUvPo6jGtY4hHw1FPp7o
+     mWILo6K8yuoMOryFIz3zayk2WC1iV/I6LWE/1+Wg0ShLH22aPfHm8QseJZRUiBjp
+     YUuaCasMlXdXWCzLHTTYGEB8xpFTJF+WI98aywMRHW2OLFrn/3DH/mGeE2wIg3tn
+     Ggy1tugF397/MErLMbRSn2XE28CxBqsCy5T6TqA84d8UBN4I3ihLrM/6iQ0BKrtw
+     7CLUX0aefcgIJDtWkajhTcqRZ3kbdbuBscYo+0CzCPOW2gdLqSq4+WhyBgCSEn70
+     aVB6+kDKW/uREmqGhZtS1HU109fJo503LWaVzA9zfHEwVEybtpsO45Ibw/ZzJrgz
+     it1cbS2cTfjpNKfpkeUaDE0y82HhIrCaonK0t9gfpnEwRqsxaupCP9j8p5oeVGwL
+     gKHRYeFhIBwHIPKb+LSIoUdK8zGno+1u
+     =4E5d
+     -----END PGP PUBLIC KEY BLOCK-----
  - source: "ppa:ondrej/php"
-   keyid: E5267A6C
+   key: |
+     -----BEGIN PGP PUBLIC KEY BLOCK-----
+     Version: GnuPG v1
+
+     mI0ESX35nAEEALKDCUDVXvmW9n+T/+3G1DnTpoWh9/1xNaz/RrUH6fQKhHr568F8
+     hfnZP/2CGYVYkW9hxP9LVW9IDvzcmnhgIwK+ddeaPZqh3T/FM4OTA7Q78HSvR81m
+     Jpf2iMLm/Zvh89ZsmP2sIgZuARiaHo8lxoTSLtmKXsM3FsJVlusyewHfABEBAAG0
+     H0xhdW5jaHBhZCBQUEEgZm9yIE9uZMWZZWogU3Vyw72ItgQTAQIAIAUCSX35nAIb
+     AwYLCQgHAwIEFQIIAwQWAgMBAh4BAheAAAoJEE9OoKrlJnpsQjYD/jW1NlIFAlT6
+     EvF2xfVbkhERii9MapjaUsSso4XLCEmZdEGX54GQ01svXnrivwnd/kmhKvyxCqiN
+     LDY/dOaK8MK//bDI6mqdKmG8XbP2vsdsxhifNC+GH/OwaDPvn1TyYB653kwyruCG
+     FjEnCreZTcRUu2oBQyolORDl+BmF4DjL
+     =R5tk
+     -----END PGP PUBLIC KEY BLOCK-----
 
 # setup packages
 
@@ -56,7 +93,7 @@ downloadcms:
    rm -rf /etc/nginx/sites-available && rm -rf /etc/nginx/sites-enabled
    chown -R www-data:www-data /var/www/microweber
    chmod -R 755 /var/www/microweber
-   su www-data | php /var/www/microweber/artisan microweber:install admin@site.com admin password 127.0.0.1 microweber microweber $(</tmp/mysqlpass) -p site_
+   su www-data | php /var/www/microweber/artisan microweber:install admin@site.com admin password 127.0.0.1 microweber microweber $(</tmp/mysqlpass) -p site_ -t liteness  -d 1
 
 runcmd:
  - echo $(openssl rand -base64 12) > /tmp/mysqlpass
@@ -70,5 +107,5 @@ final_message: "Microweber CMS is finally up, after $UPTIME seconds, rebooting"
 
 power_state:
  mode: reboot
- message: Bye Bye
+ message: Good Bye
  condition: True

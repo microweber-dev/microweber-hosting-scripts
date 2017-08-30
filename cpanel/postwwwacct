@@ -22,7 +22,6 @@ require('/usr/share/microweber-hosting-scripts/cpanel/install.php');
 
 
 $msg = print_r($opts, true);
-//mail("boksiora@gmail.com", "debug", $msg);
 
 exit();
 
