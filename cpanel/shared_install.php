@@ -114,7 +114,7 @@ if (isset($opts['domain'])) {
                 $output = shell_exec($exec);
                 $message = $message . "\n\n\n" . $output;
 
-                $exec = " ln -s  {$mw_shared_dir}{$link} /home/{$opts['user']}/public_html/{$link}";
+                $exec = "ln -s  {$mw_shared_dir}{$link} /home/{$opts['user']}/public_html/{$link}";
 
                 $message = $message . "\n\n\n" . $exec;
                 $output = shell_exec($exec);
@@ -164,7 +164,7 @@ if (isset($opts['domain'])) {
         $exec .= $contact_email . " " . $auth_user . " " . $auth_pass . " " . $database_host . " " . $sqlite_file . " " . $database_user . " " . $database_password . " sqlite -p " . $database_prefix;
         $exec .= " -t " . $default_template . " -d 1 --env={$domain}"; //
 
-       // @file_put_contents(__DIR__.DIRECTORY_SEPARATOR.'log.txt',$exec);
+        // @file_put_contents(__DIR__.DIRECTORY_SEPARATOR.'log.txt',$exec);
 
         $message = $message . "\n\n\n" . $exec;
         shell_exec($exec);
