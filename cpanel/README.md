@@ -20,9 +20,22 @@ You will need to have root access to your servers and knowledge of you hosting c
  
  - Choose php-curl, php-mbstring and php-finfo
  
+
+ 
  ![img](img/whm3.png "img")
  
  And then provision the new settings, after that continue on the next step
+ 
+ 
+  *Important*
+ 
+  - Setup apache to follow symlinks 
+    
+    Go to Service Configuration -> Apache Configuration  -> Global ConfigurationDocumentation
+    
+    and *turn on FollowSymLinks*  and  *turn off SymLinksIfOwnerMatch* 
+  
+   ![img](img/whm4.png "img")
 
 
 
