@@ -46,8 +46,8 @@ Those scripts will install Microweber from a shared folder. All users will load 
  
 The system files are located in the folder `/usr/share/microweber-latest` and if you update this folder it will automatically update all installations of all users on the server 
 
-To setup the Microweber scipts run do the following 
-
+To setup the Microweber scripts do the following [setup.sh](setup.sh)
+ 
  - Download the hosing scripts with `wget https://github.com/microweber/microweber-hosting-scripts/archive/master.zip -O /usr/share/microweber-hosting-scripts.zip`
  - Unzip with `unzip /usr/share/microweber-hosting-scripts.zip -d /usr/share/`
  - Rename the unzipped folder `mv /usr/share/microweber-hosting-scripts-master /usr/share/microweber-hosting-scripts`
@@ -84,8 +84,9 @@ Execute `nano /scripts/postwwwacct` and enter this text
  ```
  
   - Make postwwwacct executable `chmod +x /scripts/postwwwacct` 
- -  You are ready!!! 
+  - You are ready!!! 
 
+Here are the setup commands 
  
 
 You can create account from WHM/cPanel and you will see the new website of the user

@@ -96,6 +96,8 @@ downloadcms:
    chown -R www-data:www-data /var/www/microweber
    chmod -R 755 /var/www/microweber
    su www-data | php /var/www/microweber/artisan microweber:install admin@site.com admin password 127.0.0.1 microweber microweber $(</tmp/mysqlpass) -p site_ -t liteness  -d 1
+   chown -R www-data:www-data /var/www/microweber
+   chmod -R 755 /var/www/microweber
 
 runcmd:
  - echo $(openssl rand -base64 12) > /tmp/mysqlpass
