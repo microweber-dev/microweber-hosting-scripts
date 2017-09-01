@@ -14,9 +14,18 @@ if (!isset($opts)) {
         $opts[$key] = $value;
     }
 }
+
+
 $config = $_SERVER;
 
 include(__DIR__ . DIRECTORY_SEPARATOR . 'paths.php');
+
+if (isset($mw_ext_dir) and is_file($mw_ext_dir . DIRECTORY_SEPARATOR . 'paths.php')) {
+    include($mw_ext_dir . DIRECTORY_SEPARATOR . 'paths.php');
+} elseif (is_file(__DIR__ . DIRECTORY_SEPARATOR . 'paths_ext.php')) {
+    include(__DIR__ . DIRECTORY_SEPARATOR . 'paths_ext.php');
+}
+
 if (!is_dir($mw_shared_dir)) {
     // download latest
     include(dirname(__DIR__) . DIRECTORY_SEPARATOR . 'common/download.php');
@@ -37,7 +46,7 @@ if (isset($opts['domain'])) {
         $auth_user = $opts['user'];
         $auth_pass = $opts['pass'];
         $contact_email = $opts['contactemail'];
-        if(!$contact_email){
+        if (!$contact_email) {
             $contact_email = 'admin@localhost';
         }
         $domain = $opts['domain'];
@@ -122,6 +131,25 @@ if (isset($opts['domain'])) {
 
             }
         }
+        if (isset($mw_ext_dir) and is_dir($mw_ext_dir)) {
+            if (isset($link_ext_paths) and $link_ext_paths) {
+                foreach ($link_ext_paths as $link) {
+                    if (is_dir($mw_ext_dir . $link) or is_file($mw_ext_dir . $link)) {
+                        $exec = "rm -rvf /home/{$opts['user']}/public_html/{$link}";
+                        $message = $message . "\n\n\n" . $exec;
+                        $output = shell_exec($exec);
+                        $message = $message . "\n\n\n" . $output;
+
+                        $exec = "ln -s  {$mw_ext_dir}{$link} /home/{$opts['user']}/public_html/{$link}";
+
+                        $message = $message . "\n\n\n" . $exec;
+                        $output = shell_exec($exec);
+                        $message = $message . "\n\n\n" . $output;
+                    }
+                }
+            }
+        }
+
 
         $exec = "chown -R {$opts['user']}:{$opts['user']} /home/{$opts['user']}/public_html/*";
         $message = $message . "\n\n\n" . $exec;
@@ -162,15 +190,14 @@ if (isset($opts['domain'])) {
         $exec = "cd /home/" . $auth_user . "/public_html/;";
         $exec .= "php artisan microweber:install ";
         $exec .= $contact_email . " " . $auth_user . " " . $auth_pass . " " . $database_host . " " . $sqlite_file . " " . $database_user . " " . $database_password . " sqlite -p " . $database_prefix;
-        $exec .= " -t " . $default_template . " -d 1 --env={$domain}"; //
 
-        // @file_put_contents(__DIR__.DIRECTORY_SEPARATOR.'log.txt',$exec);
+        if (isset($prepare_only) and $prepare_only) {
+            $exec .= " -c 1"; //
+        }
+        $exec .= " -t " . $default_template . " -d 1 --env={$domain}"; //
 
         $message = $message . "\n\n\n" . $exec;
         shell_exec($exec);
-
-
-
 
 
         $exec = "rm -rvf /home/{$opts['user']}/public_html/storage/framework/cache/*";
@@ -206,6 +233,10 @@ if (isset($opts['domain'])) {
         $message = $message . "\n\n\n" . $exec;
         $output = exec($exec);
         $message = $message . "\n\n\n" . $output;
+
+        // @file_put_contents(__DIR__.DIRECTORY_SEPARATOR.'log.txt',$message);
+
+
     }
 }
  

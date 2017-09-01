@@ -3,6 +3,10 @@
 if (!isset($mw_shared_dir)) {
     $mw_shared_dir = '/usr/share/microweber-latest/'; //add slash
 }
+if (!isset($mw_ext_dir)) {
+    $mw_ext_dir = '/usr/share/microweber-ext/'; //add slash
+}
+
 
 $remove_paths = array();
 $remove_paths[] = 'config.php';
@@ -112,8 +116,8 @@ $link_paths[] = 'userfiles/modules/layouts';
 
 
 // M
-$link_paths[] = 'userfiles/modules/media';
-$link_paths[] = 'userfiles/modules/mics';
+//$link_paths[] = 'userfiles/modules/media';
+//$link_paths[] = 'userfiles/modules/mics';
 $link_paths[] = 'userfiles/modules/menu';
 $link_paths[] = 'userfiles/modules/microweber';
 
@@ -160,9 +164,9 @@ $link_paths[] = 'userfiles/modules/tabs';
 // U
 $link_paths[] = 'userfiles/modules/users';
 $link_paths[] = 'userfiles/modules/updates';
-$link_paths[] = 'userfiles/modules/user_profile';
-$link_paths[] = 'userfiles/modules/user_search';
-$link_paths[] = 'userfiles/modules/users_list';
+//$link_paths[] = 'userfiles/modules/user_profile';
+//$link_paths[] = 'userfiles/modules/user_search';
+//$link_paths[] = 'userfiles/modules/users_list';
 
 // V
 $link_paths[] = 'userfiles/modules/video';
@@ -172,25 +176,13 @@ $link_paths[] = 'userfiles/modules/default.png';
 $link_paths[] = 'userfiles/modules/non_existing.php';
 
 
-// new
 
 
 // link templates
 
 $link_paths[] = 'userfiles/templates/liteness';
-$link_paths[] = 'userfiles/templates/shopmag';
-$link_paths[] = 'userfiles/templates/darock';
-$link_paths[] = 'userfiles/templates/photon';
-$link_paths[] = 'userfiles/templates/corp';
-$link_paths[] = 'userfiles/templates/davy';
-$link_paths[] = 'userfiles/templates/active';
-$link_paths[] = 'userfiles/templates/bodo';
-$link_paths[] = 'userfiles/templates/bootstrap3';
-$link_paths[] = 'userfiles/templates/sophistika';
-$link_paths[] = 'userfiles/templates/tale';
-$link_paths[] = 'userfiles/templates/snow';
-$link_paths[] = 'userfiles/templates/power';
-$link_paths[] = 'userfiles/templates/cashy';
+$link_paths[] = 'userfiles/templates/default';
+
 
 // link new modulules
 

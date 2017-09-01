@@ -7,7 +7,6 @@ if(isset($_SERVER['argv']) and !empty($_SERVER['argv'])){
     $argv = $_SERVER['argv'];
 }
 
-
 $opts = array();
 $argv0 = array_shift($argv);
 
@@ -18,10 +17,15 @@ while(count($argv)) {
 }
 
 
-require('/usr/share/microweber-hosting-scripts/cpanel/install.php');
+// Choose one of the following
+
+// to make actual install
+// require('/usr/share/microweber-hosting-scripts/cpanel/shared_install.php');
+
+// only prepare the install and let the user do it
+
+ require('/usr/share/microweber-hosting-scripts/cpanel/prepare_shared_install.php');
 
 
-$msg = print_r($opts, true);
 
 exit();
-
