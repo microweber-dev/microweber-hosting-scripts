@@ -1,4 +1,4 @@
-# This repostiry is Archieved
+# This repostiry is archived
 
 Pleae use the new repository of the cPanel plugin https://github.com/microweber-dev/cpanel-plugin
 
