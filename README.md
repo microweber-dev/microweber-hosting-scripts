@@ -1,3 +1,9 @@
+# This repostiry is Archieved
+
+Pleae use the new repository of the cPanel plugin https://github.com/microweber-dev/cpanel-plugin
+
+
+
 # Hosting scripts
 
 If you are a hosting provider and want to deploy Microweber websites with hosting accounts, these scripts will help you. 
